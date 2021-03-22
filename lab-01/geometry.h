@@ -57,7 +57,8 @@ struct Vector {
 
 struct Polygon : protected CycledBrokenLine {
   explicit Polygon(const std::vector<Point>& points);
-  virtual double CalculatePerimeter() const;
+//  virtual double CalculatePerimeter() const;
+  using CycledBrokenLine::CalculatePerimeter;
   virtual double CalculateSquare() const;
 
   virtual ~Polygon() = default;
@@ -66,17 +67,13 @@ struct Polygon : protected CycledBrokenLine {
 struct Triangle final : protected Polygon {
   explicit Triangle(const std::vector<Point>& points);
   double CalculateSquare() const override;
-  double CalculatePerimeter() const override {
-    return Polygon::CalculatePerimeter();
-  }
+  using Polygon::CalculatePerimeter;
 };
 
 struct Trapezoid final : protected Polygon {
   explicit Trapezoid(const std::vector<Point>& points);
   double CalculateSquare() const override;
-  double CalculatePerimeter() const override {
-    return Polygon::CalculatePerimeter();
-  }
+  using Polygon::CalculatePerimeter;
 };
 
 struct RegularPolygon final : protected Polygon {

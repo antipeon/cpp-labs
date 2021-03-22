@@ -121,7 +121,8 @@ void TestCopyAssign() {
 
 int main() {
   try {
-    TestCopyAssign();
+//    TestCopyAssign();
+    DemonstrateDynamicPolymorphismForShapes();
   } catch (std::runtime_error& e) {
     std::cout << e.what() << std::endl;
   }

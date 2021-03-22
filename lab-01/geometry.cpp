@@ -56,10 +56,6 @@ Polygon::Polygon(const std::vector<Point>& points) : CycledBrokenLine(points) {
   }
 }
 
-double Polygon::CalculatePerimeter() const {
-  return CycledBrokenLine::CalculatePerimeter();
-}
-
 double Polygon::CalculateSquare() const {
   double square = 0;
 
