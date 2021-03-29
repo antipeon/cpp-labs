@@ -3,6 +3,14 @@
 
 #include "geometry.h"
 
+using geometry::BrokenLine;
+using geometry::CycledBrokenLine;
+using geometry::Point;
+using geometry::Polygon;
+using geometry::RegularPolygon;
+using geometry::Trapezoid;
+using geometry::Triangle;
+
 void DemonstrateDynamicPolymorphismForLines() {
   const Point a(1, 3);
   const Point b(2, 4);
@@ -121,7 +129,7 @@ void TestCopyAssign() {
 
 int main() {
   try {
-//    TestCopyAssign();
+    //    TestCopyAssign();
     DemonstrateDynamicPolymorphismForShapes();
   } catch (std::runtime_error& e) {
     std::cout << e.what() << std::endl;
