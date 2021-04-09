@@ -158,37 +158,48 @@ double TransportationDataset::StationsDistance(
 
 double TransportationDataset::GetRouteLength(
     const std::vector<double_pair>& stations) const {
-  double route_length = 0;
-  const auto stations_number = stations.size();
-  std::vector<bool> visited(stations_number, false);
-  int32_t visited_number = 0;
-
-  int32_t from = 0;
-  visited[from] = true;
-  visited_number++;
-
   const int32_t not_defined = -1;
-  while (visited_number < stations_number) {
-    int32_t min_to = not_defined;
-    for (int32_t to = 0; to < stations_number; ++to) {
-      if (visited[to] || to == from) {
-        continue;
-      }
-      if (min_to == not_defined ||
-          StationsDistance(stations[from], stations[to]) <
-              StationsDistance(stations[from], stations[min_to])) {
-        min_to = to;
-      }
-    }
+  const auto stations_number = stations.size();
+  double min_route_length = not_defined;
+  for (int32_t start_vertice = 0; start_vertice < stations_number;
+       ++start_vertice) {
+    double route_length = 0;
+    std::vector<bool> visited(stations_number, false);
+    int32_t visited_number = 0;
 
-    route_length += StationsDistance(stations[from], stations[min_to]);
-
-    from = min_to;
+    int32_t from = start_vertice;
     visited[from] = true;
     visited_number++;
+
+
+    while (visited_number < stations_number) {
+      int32_t min_to = not_defined;
+      for (int32_t to = 0; to < stations_number; ++to) {
+        if (visited[to]) {
+          continue;
+        }
+        if (min_to == not_defined ||
+            StationsDistance(stations[from], stations[to]) <
+                StationsDistance(stations[from], stations[min_to])) {
+          min_to = to;
+        }
+      }
+
+      route_length += StationsDistance(stations[from], stations[min_to]);
+
+      from = min_to;
+      visited[from] = true;
+      visited_number++;
+    }
+
+    if (min_route_length == -1) {
+      min_route_length = route_length;
+      continue;
+    }
+    min_route_length = std::min(min_route_length, route_length);
   }
 
-  return route_length;
+  return min_route_length;
 }
 
 std::pair<std::string, double> TransportationDataset::GetLongestRoute(
