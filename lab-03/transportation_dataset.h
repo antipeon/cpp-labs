@@ -17,7 +17,7 @@ struct TransportationDataset {
   void PrintLongestRoutes() const;
 
  private:
-  typedef std::pair<double, double> double_pair;
+  using double_pair = std::pair<double, double>;
   pugi::xml_document xml_file;
   pugi::xml_node dataset;
   size_t stations_number;

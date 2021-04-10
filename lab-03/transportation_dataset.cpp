@@ -222,8 +222,7 @@ std::pair<std::string, double> TransportationDataset::GetLongestRoute(
       if (search == route_stations.end()) {
         route_stations[route] = std::vector<double_pair>();
       }
-      route_stations[route].push_back(
-          std::make_pair(std::stod(coordinates[0]), std::stod(coordinates[1])));
+      route_stations[route].emplace_back(std::stod(coordinates[0]), std::stod(coordinates[1]));
     }
   }
 
