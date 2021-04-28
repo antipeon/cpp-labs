@@ -118,7 +118,7 @@ template <typename T>
 struct LessThan {
   T less_than;
   LessThan(const T& less_than) : less_than(less_than) {}
-  bool operator()(T item) const { return item < less_than; }
+  bool operator()(const T& item) const { return item < less_than; }
 };
 
 template <typename T>
