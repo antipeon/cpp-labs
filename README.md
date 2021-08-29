@@ -1,1 +1,1 @@
-cpp-labs
+# C++ course at ITMO
