@@ -9,8 +9,8 @@ template <typename T>
 class CircularBuffer {
  public:
   CircularBuffer() = default;
-  CircularBuffer(size_t capacity);
-  CircularBuffer(const CircularBuffer&);
+  explicit CircularBuffer(size_t capacity);
+  explicit CircularBuffer(const CircularBuffer&);
   // CircularBuffer(CircularBuffer&&);
 
   ~CircularBuffer();
