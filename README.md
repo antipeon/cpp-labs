@@ -1,1 +1,1 @@
-# C++ course at ITMO
+# OOP course at ITMO (C++)
